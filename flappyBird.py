@@ -77,9 +77,6 @@ class Bird:
     def get_mask(self):
         return pygame.mask.from_surface(self.img)
 
-    def get_y(self):
-        return self.y
-
 
 class Pipe:
     GAP = 200
@@ -180,10 +177,10 @@ def main():
 
         add_pipe = False
         rem = []
-        if bird.get_y() > (WIN_HEIGHT - 70):
+        if bird.y + bird.img.get_height() > base.y:
             messagebox.showinfo("GAME OVER", "You Collided with the base, Score: " + str(score))
             run = False
-        if bird.get_y() < -PIPE_IMG.get_height():
+        if bird.y < -PIPE_IMG.get_height():
             messagebox.showinfo("GAME OVER", "You went too high, Score: " + str(score))
             run = False
         for pipe in pipes:
